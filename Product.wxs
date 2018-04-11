@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='Windows-1252'?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+  <Product Name='winlogbeat' Id='{627522C7-6ABF-4014-8118-7EE3D8C0B1AB}' UpgradeCode='{B3510E4C-C190-4B85-9D7A-DF5EECF70A99}'
+    Language='1033' Codepage='1252' Version='6.2.2' Manufacturer='SherlockCloudSecurity'>
+
+    <Package Id='*' Keywords='Installer' Description="Winlogbeat Installer"
+      Manufacturer='SherlockSherlockCloudSecurity'
+      InstallerVersion='201' Languages='1033' Compressed='yes' SummaryCodepage='1252' Platform="x64" />
+
+    <Media Id='1' Cabinet='winlogbeat.cab' EmbedCab='yes' DiskPrompt="CD-ROM #1" />
+    <Property Id='DiskPrompt' Value="Winlogbeat Install [1]" />
+
+    <Directory Id='TARGETDIR' Name='SourceDir'>
+      <Directory Id='ProgramFiles64Folder' Name='PFiles'>
+          <Directory Id='INSTALLDIR' Name='winlogbeat'>
+            
+            <!-- Package each component-->
+            <Component Id='MainExecutable' Guid='{B1793D12-366E-4D4F-9057-A2E47D3CEEC5}' Win64='yes'>
+              <File Id='winlogbeatEXE' Name='winlogbeat.exe' Source='winlogbeat.exe' KeyPath='yes' ProcessorArchitecture='x64'>
+                <Shortcut Id="startmenuWinlogbeat" Directory="ProgramMenuDir" Name="winlogbeat" WorkingDirectory='INSTALLDIR' Icon="winlogbeat.exe" IconIndex="0" Advertise="yes" />
+              </File>
+            </Component>
+            <Component Id='MainConfig' Guid='{72C31DC7-B0E8-42A2-9BBA-5F9F30A69754}' Win64='yes'>
+              <File Id='winlogbeatYML' Name='winlogbeat.yml' Source='winlogbeat.yml' KeyPath='yes'>
+              </File>
+            </Component>
+            <Component Id='ReadMe' Guid='{41E92721-D39B-460E-AE47-A1E043B625A8}' Win64='yes'>
+              <File Id='ReadMeMD' Name='README.md' Source='README.md' KeyPath='yes'>
+              </File>
+            </Component>
+            <Component Id='MainFieldConfig' Guid='{1B43DB1D-3D8E-424F-AADF-BC60507D2DA4}' Win64='yes'>
+              <File Id='FieldsYML' Name='fields.yml' Source='fields.yml' KeyPath='yes'>
+              </File>
+            </Component>
+            <Component Id='LicenseTXT' Guid='{E4BAAA42-5479-4BB4-AF92-22404AE6DE97}' Win64='yes'>
+              <File Id='LicenseTXT' Name='LICENSE.txt' Source='LICENSE.txt' KeyPath='yes'>
+              </File>
+            </Component>
+            <Component Id='Notice' Guid='{09CFBB9E-5459-41E4-8AC7-6040C1C83734}' Win64='yes'>
+              <File Id='NoticeTXT' Name='NOTICE.txt' Source='NOTICE.txt' KeyPath='yes'>
+              </File>
+            </Component>
+            <Component Id='UninstallPS' Guid='{3B95CB0C-DF57-4277-B139-5B5B15F0663D}' Win64='yes'>
+              <File Id='UninstallPS1' Name='uninstall-service-winlogbeat.ps1' Source='uninstall-service-winlogbeat.ps1' KeyPath='yes'>
+              </File>
+            </Component>
+            <Component Id='InstallPS' Guid='{585E96FC-61CD-44CE-AE63-29A20DA2621B}' Win64='yes'>
+              <File Id='InstallPS1' Name='install-service-winlogbeat.ps1' Source='install-service-winlogbeat.ps1' KeyPath='yes'>
+              </File>
+            </Component>
+            <Component Id='Reference' Guid='{86A28168-BD5E-465D-9FAA-88C4E6834E78}' Win64='yes'>
+              <File Id='winlogbeatRefYML' Name='winlogbeat.reference.yml' Source='winlogbeat.reference.yml' KeyPath='yes'>
+              </File>
+            </Component>
+            <Component Id='BuildHash' Guid='{DF6F6BF8-04CB-426C-AF88-C257BA643497}' Win64='yes'>
+              <File Id='BuildHashTXT' Name='.build_hash.txt' Source='.build_hash.txt' KeyPath='yes'>
+              </File>
+            </Component>
+             <Component Id='LicenseRTF' Guid='{8DC61019-080A-4238-8B70-388A07070B82}' Win64='yes'>
+              <File Id='LicenseRTF' Name='RTFLicense.rtf' Source='RTFLicense.rtf' KeyPath='yes'> 
+              </File>
+            </Component>
+          </Directory>
+        </Directory>
+
+
+      <Directory Id="ProgramMenuFolder" Name="Programs">
+        <Directory Id="ProgramMenuDir" Name="winlogbeat">
+          <Component Id="ProgramMenuDir" Guid="{B2D0D0FE-F052-472E-9EA2-A97D40166A1F}">
+            <RemoveFolder Id='ProgramMenuDir' On='uninstall' />
+            <RegistryValue Root='HKCU' Key='Software\[Manufacturer]\[ProductName]' Type='string' Value='' KeyPath='yes' />
+          </Component>
+        </Directory>
+      </Directory>
+   </Directory>
+
+    <DirectoryRef Id="TARGETDIR">
+    <Component Id="RegistryEntries" Guid="{AD54C14E-EBFB-40E6-B7EB-8B7B5BD132EC}">
+        <RegistryKey Root="HKLM"
+                     Key="System\CurrentControlSet\Services\winlogbeat"
+              Action="createAndRemoveOnUninstall">
+            <RegistryValue Type="integer" Name="DelayedAutoStart" Value="1" KeyPath="yes"/>
+            <RegistryValue Type="string" Value="DWORD"/>
+        </RegistryKey>
+    </Component>
+   </DirectoryRef>
+    
+      
+    <Feature Id='Complete' Level='1'>
+      <ComponentRef Id='MainExecutable' />
+      <ComponentRef Id='ProgramMenuDir' />
+      <ComponentRef Id='MainConfig' />
+      <ComponentRef Id='ReadMe' />
+      <ComponentRef Id='MainFieldConfig' />
+      <ComponentRef Id='LicenseTXT' />
+      <ComponentRef Id='Notice' />
+      <ComponentRef Id='UninstallPS' />
+      <ComponentRef Id='InstallPS' />
+      <ComponentRef Id='Reference' />
+      <ComponentRef Id='LicenseRTF' /> 
+      <ComponentRef Id='BuildHash' />
+      <ComponentRef Id='RegistryEntries' />
+    </Feature>
+
+    <Icon Id="winlogbeat.exe" SourceFile="winlogbeat.exe" />
+
+    <!-- Include a user interface -->
+    <Property Id="WIXUI_INSTALLDIR">INSTALLDIR</Property>
+    <UIRef Id="WixUI_InstallDir" />
+    <UIRef Id="WixUI_ErrorProgressText" />
+
+    <!-- Custom Action for running powershell script on install/uninstall-->
+    <CustomAction Id="RegisterInstallPSScript"
+                      Property="RegisterInstallPSScriptProperty"
+                      Value="&quot;C:\Windows\system32\WindowsPowerShell\v1.0\powershell.exe&quot; -NoLogo -NonInteractive -ExecutionPolicy Unrestricted -NoProfile -File &quot;[INSTALLDIR]\install-service-winlogbeat.ps1&quot;"
+                      Execute="immediate" />
+    <CustomAction Id="RegisterInstallPSScriptProperty"
+                      BinaryKey="WixCA"
+                      DllEntry="CAQuietExec64"
+                      Execute="deferred"
+                      Return="check"
+                      Impersonate="no" />
+    <CustomAction Id="RegisterUninstallPSScript"
+                      Property="RegisterUninstallPSScriptProperty"
+                      Value="&quot;C:\Windows\system32\WindowsPowerShell\v1.0\powershell.exe&quot; -NoLogo -NonInteractive -ExecutionPolicy Unrestricted -NoProfile -File &quot;[INSTALLDIR]\uninstall-service-winlogbeat.ps1&quot;"
+                      Execute="immediate" />
+    <CustomAction Id="RegisterUninstallPSScriptProperty"
+                      BinaryKey="WixCA"
+                      DllEntry="CAQuietExec64"
+                      Execute="deferred"
+                      Return="check"
+                      Impersonate="no" />
+    
+    
+    <!-- Install Sequence -->
+    <InstallExecuteSequence>
+      <Custom Action="RegisterInstallPSScript" After="CostFinalize">NOT  Installed</Custom>
+      <Custom Action="RegisterInstallPSScriptProperty" After="InstallFiles">NOT Installed</Custom>
+      <Custom Action="RegisterUninstallPSScript" Before="RemoveFiles">Installed and NOT REINSTALL</Custom>
+      <Custom Action="RegisterUninstallPSScriptProperty" Before="RemoveFiles">Installed and NOT REINSTALL</Custom>
+    </InstallExecuteSequence>
+
+    <WixVariable Id="WixUILicenseRtf" Value="RTFLicense.rtf" />
+
+
+  </Product>
+</Wix>
