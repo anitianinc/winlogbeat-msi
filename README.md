@@ -13,9 +13,9 @@ Elastic Winlogbeat MSI
 
 1. After downloading and installing all requirements above, create new WiX project in VB.
 2. Add the following references:
-  - WixPSExtension
-  - WixUIExtension
-  - WixUtilExtension
+   - WixPSExtension
+   - WixUIExtension
+   - WixUtilExtension
 3. Copy and and paste the Product.wxs code into your project.
 4. Copy and paste the contents of the winlogbeat folder downloaded from Elastic into your Wix project folder.
 5. Replace the default install powershell script with the one from this repo.
