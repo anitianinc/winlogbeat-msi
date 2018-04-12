@@ -11,7 +11,7 @@ Elastic Winlogbeat MSI
 
 ## Steps to Create the Package Yourself:
 
-1. After downloading and installing all requirements above, create new WiX project in VB.
+1. After downloading and installing all requirements above, create new WiX project in Visual Studio.
 2. Add the following references:
    - WixPSExtension
    - WixUIExtension
@@ -21,6 +21,6 @@ Elastic Winlogbeat MSI
 5. Replace the default install powershell script with the one from this repo.
 6. Place the License.rtf in your wix project folder (this file is used when intalling winlogbeat via the installer GUI).
 6. Make adjustments to the winlogbeat.yml to match your envirnoment. 
-7. Create new GUIDs (there's is a GUID generator add-on for VB available here)
-8. Modify the Product.wxs as you need.
-9. Build the solution.
+7. Create new GUIDs (there's is a GUID generator add-on for VS available here https://marketplace.visualstudio.com/items?itemName=kylebahrke.GenerateGUIDforVisualStudio2015)
+8. Modify the Product.wxs as you need
+9. Build the solution
