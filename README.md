@@ -1,11 +1,11 @@
 # winlogbeat-msi
-Below you will find a set of instructions on how to wrap Elastic winlogbeat in an MSI installer package using Visual Studio and WiX. At the bottom of this readme you will find a link to download a pre-built winlogbeat MSI that uses the default configuration as it ships from Elastic. After installation, the winlogbeat service will be started automatically.
+Below you will find a set of instructions on how to wrap Elastic winlogbeat in a 64bit MSI installer package using Visual Studio and WiX. At the bottom of this readme you will find a link to download a pre-built winlogbeat MSI that uses the default configuration as it ships from Elastic. After installation, the winlogbeat service will be started automatically.
 
 ## Things you'll need:
 1. Visual Studio - https://www.visualstudio.com/vs/community/
 2. WiX Toolset - http://wixtoolset.org/releases/
 3. WiX Toolset VS extension - https://marketplace.visualstudio.com/items?itemName=RobMensching.WixToolsetVisualStudio2017Extension
-4. Latest winlogbeat version from Elastic - https://www.elastic.co/downloads/beats/winlogbeat
+4. Latest winlogbeat (x64) version from Elastic - https://www.elastic.co/downloads/beats/winlogbeat
 5. The modified install powershell script and license.rtf copy located in this repo.
 
 ## Steps to Create the Package Yourself:
