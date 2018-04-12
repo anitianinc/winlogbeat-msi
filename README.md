@@ -22,7 +22,3 @@ Below you will find a set of instructions on how to wrap Elastic winlogbeat in a
 7. Create new GUIDs (there's is a GUID generator add-on for VS available here https://marketplace.visualstudio.com/items?itemName=kylebahrke.GenerateGUIDforVisualStudio2015)
 8. Modify the Product.wxs as you need
 9. Build the solution
-
-## Download:
-You can download the insaller with default settings (as if you had downloaded it from Elastic) here:
-
