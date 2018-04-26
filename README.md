@@ -11,9 +11,9 @@ Below you will find a set of instructions on how to wrap Elastic winlogbeat in a
 ## Steps to Create the Package Yourself:
 1. After downloading and installing all requirements above, create new WiX project in Visual Studio.
 2. Add the following references:
-   - WixPSExtension
-   - WixUIExtension
-   - WixUtilExtension
+   - C:\Program Files (x86)\WiX Toolset v3.11\bin\\WixPSExtension.dll
+   - C:\Program Files (x86)\WiX Toolset v3.11\bin\\WixUIExtension.dll
+   - C:\Program Files (x86)\WiX Toolset v3.11\bin\\WixUtilExtension.dll
 3. Copy and and paste the Product.wxs code into your project.
 4. Copy and paste the contents of the winlogbeat folder downloaded from Elastic into your Wix project folder.
 5. Replace the default install powershell script with the one from this repo.
