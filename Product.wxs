@@ -1,12 +1,16 @@
 <?xml version='1.0' encoding='Windows-1252'?>
 <Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
-  <Product Name='winlogbeat' Id='{627522C7-6ABF-4014-8118-7EE3D8C0B1AB}' UpgradeCode='{B3510E4C-C190-4B85-9D7A-DF5EECF70A99}'
-    Language='1033' Codepage='1252' Version='6.2.2' Manufacturer='SherlockCloudSecurity'>
+  <Product Name='winlogbeat' Id='*' UpgradeCode='{B3510E4C-C190-4B85-9D7A-DF5EECF70A99}'
+    Language='1033' Codepage='1252' Version='1.0.0' Manufacturer='SherlockCloudSecurity'>
 
     <Package Id='*' Keywords='Installer' Description="Winlogbeat Installer"
       Manufacturer='SherlockSherlockCloudSecurity'
       InstallerVersion='201' Languages='1033' Compressed='yes' SummaryCodepage='1252' Platform="x64" />
-
+    
+    <MajorUpgrade
+      Schedule="afterInstallInitialize" AllowDowngrades="no" AllowSameVersionUpgrades="no" DowngradeErrorMessage="A later version of [ProductName] is already installed. Setup will now exit."
+     />
+    
     <Media Id='1' Cabinet='winlogbeat.cab' EmbedCab='yes' DiskPrompt="CD-ROM #1" />
     <Property Id='DiskPrompt' Value="Winlogbeat Install [1]" />
 
